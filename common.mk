@@ -15,18 +15,35 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# Add common definitions for Qualcomm
-$(call inherit-product, hardware/qcom-caf/common/common.mk)
+# Qualcomm common definitions come from device/qcom/common, which
+# vendor/aospa/target/product/aospa-target.mk inherits.
+# QTI components (list taken from AOSPA dubai, the closest AOSPA Moto lahaina device).
+# The first build will show any overlap with Motorola blobs that needs pruning.
+TARGET_COMMON_QTI_COMPONENTS += \
+    adreno \
+    audio \
+    av \
+    bt \
+    display \
+    gps \
+    init \
+    media \
+    overlay \
+    perf \
+    qseecomd \
+    telephony \
+    usb \
+    vibrator \
+    wfd \
+    wlan
 
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
 PRODUCT_PACKAGES += \
-    ApertureOverlayCommon \
     FrameworksResCommon \
     FrameworksResProduct \
     FrameworksResTarget \
-    LineageSDKResCommon \
     NcmTetheringOverlay \
     SettingsResCommon \
     SystemUIResCommon \
@@ -167,22 +184,11 @@ PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml
 
-# Lineage Health
-PRODUCT_PACKAGES += \
-    vendor.lineage.health-service.default
-
-$(call soong_config_set,lineage_health,charging_control_charging_disabled,1)
-$(call soong_config_set,lineage_health,charging_control_charging_enabled,0)
-$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/power_supply/battery/device/force_charging_disable)
-$(call soong_config_set_bool,lineage_health,charging_control_supports_bypass,false)
+# Health
+# TODO(penguin): LineageOS charging control (vendor.lineage.health) is unavailable; port it later.
 
 # LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay-service.sdm \
-    vendor.lineage.livedisplay-service.sysfs
-
-$(call soong_config_set_bool,livedisplay_sdm,enable_dm,false)
-$(call soong_config_set_bool,livedisplay_sysfs,enable_se,true)
+# TODO(penguin): LineageOS LiveDisplay is unavailable on PenguinOS.
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -196,8 +202,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/yupik/media_profiles_yupik_v1.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_yupik_v1.xml
 
 # Moto hardware
+# TODO(penguin): MotoActions depends on org.lineageos.settings.resources; port it later.
 PRODUCT_PACKAGES += \
-    MotoActions \
     MotoCommonOverlay
 
 # Permissions
@@ -276,13 +282,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hotword-hiddenapi-package-whitelist.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/hotword-hiddenapi-package-whitelist.xml
 
 # Power
-PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr \
-    libqti-perfd-client
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/perf/powerhint_lahaina.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint_lahaina.json \
-    $(LOCAL_PATH)/configs/perf/powerhint_yupik.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint_yupik.json
+# QTI power AIDL (vendor/qcom/opensource/power) + QTI perf (the "perf" QTI component).
+# The libperfmgr powerhint JSONs are kept in configs/perf/ for reference/tuning.
 
 # RFS MSM MPSS symlinks
 PRODUCT_PACKAGES += \
@@ -297,10 +298,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/google/interfaces \
-    hardware/google/pixel/power-libperfmgr \
-    hardware/lineage/interfaces/power-libperfmgr \
-    hardware/motorola \
-    hardware/qcom-caf/common/libqti-perfd-client
+    hardware/motorola
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -308,7 +306,6 @@ PRODUCT_PACKAGES += \
     extphonelib-product \
     extphonelib.xml \
     extphonelib_product.xml \
-    MotoExtTelephony \
     ims-ext-common \
     ims_ext_common.xml \
     qti-telephony-hidl-wrapper \
@@ -360,9 +357,8 @@ PRODUCT_COPY_FILES += \
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    hardware/motorola/vintf/device_framework_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
-DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
+    hardware/motorola/vintf/device_framework_matrix.xml
+# DEVICE_MATRIX_FILE and the QTI vendor framework matrix are set by device/qcom/common.
 DEVICE_MANIFEST_FILE += device/motorola/sm7325-common/vintf/manifest.xml
 
 # WiFi
