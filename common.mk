@@ -44,6 +44,10 @@ PRODUCT_VENDOR_PROPERTIES += \
     vendor.display.enable_async_powermode=1 \
     vendor.usb.use_gadget_hal=1
 
+# The Motorola data blobs (adpl, ...) link the legacy librmnetctl API
+# (rmnet_associate_network_device, rmnetctl_init, ...).
+$(call soong_config_set_bool,rmnetctl,old_rmnet_data,true)
+
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
