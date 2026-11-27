@@ -20,6 +20,12 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
+# Build
+# firmware_mnt is created by both vendor/aospa mkdir.mk and QTI core-utils AndroidBoardCommon.mk;
+# some blob .so files are installed via PRODUCT_COPY_FILES.
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+
 # Bootloader
 TARGET_NO_BOOTLOADER := true
 
