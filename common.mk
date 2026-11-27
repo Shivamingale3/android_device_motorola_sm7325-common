@@ -21,9 +21,9 @@ PRODUCT_ENABLE_UFFD_GC := true
 $(call soong_config_set,ufsbsg,ufsframework,bsg)
 
 # Motorola-tuned values that the QTI display/audio/perf/usb makefiles also set. Kept in
-# PRODUCT_VENDOR_PROPERTIES (not vendor.prop) so that, with BUILD_BROKEN_DUP_SYSPROP,
-# these first assignments win over the generic QTI defaults.
-PRODUCT_VENDOR_PROPERTIES += \
+# PRODUCT_PROPERTY_OVERRIDES (the list the QTI makefiles use; not vendor.prop) so that, with
+# BUILD_BROKEN_DUP_SYSPROP, these first assignments win over the generic QTI defaults.
+PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.enable_gl_backpressure=false \
     debug.sf.enable_hwc_vds=1 \
     debug.sf.high_fps_early_gl_phase_offset_ns=-4000000 \
