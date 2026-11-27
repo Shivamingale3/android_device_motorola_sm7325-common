@@ -398,7 +398,8 @@ PRODUCT_COPY_FILES += \
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    hardware/motorola/vintf/device_framework_matrix.xml
+    hardware/motorola/vintf/device_framework_matrix.xml \
+    device/motorola/sm7325-common/vintf/framework_compatibility_matrix_qti_gnss.xml
 # DEVICE_MATRIX_FILE and the QTI vendor framework matrix are set by device/qcom/common.
 DEVICE_MANIFEST_FILE += device/motorola/sm7325-common/vintf/manifest.xml
 
