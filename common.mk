@@ -142,17 +142,17 @@ endif
 PRODUCT_PACKAGES += \
     android.hardware.gnss@2.1-impl-qti \
     android.hardware.gnss@2.1-service-qti \
-    gnss@2.0-base.policy.moto \
-    gnss@2.0-xtra-daemon.policy.moto \
+    gnss@2.0-base.policy \
+    gnss@2.0-xtra-daemon.policy \
     libbatching \
     libgeofencing \
     libgnss \
     libloc_socket
 
 PRODUCT_PACKAGES += \
-    flp.conf.moto \
-    gnss_antenna_info.conf.moto \
-    gps.conf.moto \
+    flp.conf \
+    gnss_antenna_info.conf \
+    gps.conf \
     izat.conf
 
 # Health
