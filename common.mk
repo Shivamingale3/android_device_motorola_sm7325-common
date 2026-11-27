@@ -324,8 +324,7 @@ PRODUCT_PACKAGES += \
     qti_telephony_utils_prd.xml \
     telephony-ext
 
-PRODUCT_BOOT_JARS += \
-    telephony-ext
+# telephony-ext boot jar is added by vendor/aospa/target/product/aospa-target.mk.
 
 # Thermal
 PRODUCT_PACKAGES += \
