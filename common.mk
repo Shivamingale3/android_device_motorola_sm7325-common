@@ -22,7 +22,8 @@ TARGET_BOARD_PLATFORM := lahaina
 # Qualcomm common definitions come from device/qcom/common, which
 # vendor/aospa/target/product/aospa-target.mk inherits.
 # QTI components (list taken from AOSPA dubai, the closest AOSPA Moto lahaina device).
-# adreno, gps, qseecomd and telephony are left out: the Motorola blobs ship those stacks
+# adreno, gps, init, qseecomd and telephony are left out (init: rootdir ships the stock/LineageOS
+# init scripts, and its modules would install over the Motorola ones): the Motorola blobs ship those stacks
 # (matched to the stock kernel/firmware) and every module would be defined twice.
 # The first build will show any overlap with Motorola blobs that needs pruning.
 # CneApp (blob) requires CneApp.libvndfwk_detect_jni.qti_symlink, the only module in this
@@ -34,7 +35,6 @@ TARGET_COMMON_QTI_COMPONENTS += \
     av \
     bt \
     display \
-    init \
     media \
     overlay \
     perf \
@@ -146,17 +146,17 @@ endif
 PRODUCT_PACKAGES += \
     android.hardware.gnss@2.1-impl-qti \
     android.hardware.gnss@2.1-service-qti \
-    gnss@2.0-base.policy.moto \
-    gnss@2.0-xtra-daemon.policy.moto \
+    gnss@2.0-base.policy \
+    gnss@2.0-xtra-daemon.policy \
     libbatching \
     libgeofencing \
     libgnss \
     libloc_socket
 
 PRODUCT_PACKAGES += \
-    flp.conf.moto \
-    gnss_antenna_info.conf.moto \
-    gps.conf.moto \
+    flp.conf \
+    gnss_antenna_info.conf \
+    gps.conf \
     izat.conf
 
 # Health
