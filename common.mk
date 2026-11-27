@@ -16,6 +16,10 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # but the build can't infer that from the version string.
 PRODUCT_ENABLE_UFFD_GC := true
 
+# QTI recovery-ext (librecovery_updater): the 5.4 kernel exposes UFS through the BSG framework
+# (scsi/scsi_bsg_ufs.h), not the legacy scsi/ufs/ioctl.h.
+$(call soong_config_set,ufsbsg,ufsframework,bsg)
+
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
