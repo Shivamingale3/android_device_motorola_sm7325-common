@@ -25,6 +25,10 @@ TARGET_BOARD_PLATFORM := lahaina
 # adreno, gps, qseecomd and telephony are left out: the Motorola blobs ship those stacks
 # (matched to the stock kernel/firmware) and every module would be defined twice.
 # The first build will show any overlap with Motorola blobs that needs pruning.
+# CneApp (blob) requires CneApp.libvndfwk_detect_jni.qti_symlink, the only module in this
+# namespace; it came with the telephony component, which is not used here.
+PRODUCT_SOONG_NAMESPACES += device/qcom/common/vendor/telephony
+
 TARGET_COMMON_QTI_COMPONENTS += \
     audio \
     av \
