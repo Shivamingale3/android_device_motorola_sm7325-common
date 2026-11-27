@@ -12,6 +12,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+# ART userfaultfd GC: the 5.4 kernel has CONFIG_USERFAULTFD=y and the MREMAP_DONTUNMAP backport,
+# but the build can't infer that from the version string.
+PRODUCT_ENABLE_UFFD_GC := true
+
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
