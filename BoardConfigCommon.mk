@@ -154,6 +154,8 @@ BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 2
 
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
+# libqsap_sdk comes from hardware/motorola (the blobs link against that Soong module).
+TARGET_PROVIDES_LIBQSAP_SDK := true
 BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := //hardware/qcom/wlan/qcwcn/wpa_supplicant_8_lib:lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
