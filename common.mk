@@ -20,6 +20,30 @@ PRODUCT_ENABLE_UFFD_GC := true
 # (scsi/scsi_bsg_ufs.h), not the legacy scsi/ufs/ioctl.h.
 $(call soong_config_set,ufsbsg,ufsframework,bsg)
 
+# Motorola-tuned values that the QTI display/audio/perf/usb makefiles also set. Kept in
+# PRODUCT_VENDOR_PROPERTIES (not vendor.prop) so that, with BUILD_BROKEN_DUP_SYSPROP,
+# these first assignments win over the generic QTI defaults.
+PRODUCT_VENDOR_PROPERTIES += \
+    debug.sf.enable_gl_backpressure=false \
+    debug.sf.enable_hwc_vds=1 \
+    debug.sf.high_fps_early_gl_phase_offset_ns=-4000000 \
+    debug.sf.high_fps_late_sf_phase_offset_ns=-4000000 \
+    persist.sys.sf.color_mode=0 \
+    persist.vendor.audio.bcl.enabled=false \
+    persist.vendor.audio.fluence.speaker=false \
+    persist.vendor.audio.vbat.enabled=false \
+    persist.vendor.audio.voicecall.speaker.stereo=false \
+    ro.vendor.perf-hal.ver=2.2 \
+    vendor.audio.feature.concurrent_capture.enable=false \
+    vendor.audio.feature.dynamic_ecns.enable=false \
+    vendor.audio.feature.spkr_prot.enable=false \
+    vendor.audio.feature.vbat.enable=false \
+    vendor.audio.use.sw.alac.decoder=false \
+    vendor.audio.use.sw.ape.decoder=false \
+    vendor.display.disable_hw_recovery_dump=1 \
+    vendor.display.enable_async_powermode=1 \
+    vendor.usb.use_gadget_hal=1
+
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 

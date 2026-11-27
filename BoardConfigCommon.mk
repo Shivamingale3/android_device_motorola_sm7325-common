@@ -24,6 +24,7 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 # firmware_mnt is created by both vendor/aospa mkdir.mk and QTI core-utils AndroidBoardCommon.mk;
 # some blob .so files are installed via PRODUCT_COPY_FILES.
 BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_DUP_SYSPROP := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Bootloader
