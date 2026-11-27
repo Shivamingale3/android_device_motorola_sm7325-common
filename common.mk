@@ -22,20 +22,18 @@ TARGET_BOARD_PLATFORM := lahaina
 # Qualcomm common definitions come from device/qcom/common, which
 # vendor/aospa/target/product/aospa-target.mk inherits.
 # QTI components (list taken from AOSPA dubai, the closest AOSPA Moto lahaina device).
+# adreno, gps, qseecomd and telephony are left out: the Motorola blobs ship those stacks
+# (matched to the stock kernel/firmware) and every module would be defined twice.
 # The first build will show any overlap with Motorola blobs that needs pruning.
 TARGET_COMMON_QTI_COMPONENTS += \
-    adreno \
     audio \
     av \
     bt \
     display \
-    gps \
     init \
     media \
     overlay \
     perf \
-    qseecomd \
-    telephony \
     usb \
     vibrator \
     wfd \
