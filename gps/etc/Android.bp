@@ -1,13 +1,18 @@
+// Motorola-tuned GPS configs. Named *.moto because hardware/qcom/gps defines the same
+// module names; the installed file names are unchanged.
+
 prebuilt_etc {
 
-    name: "flp.conf",
+    name: "flp.conf.moto",
+    filename: "flp.conf",
     vendor: true,
     src: "flp.conf",
 }
 
 prebuilt_etc {
 
-    name: "gps.conf",
+    name: "gps.conf.moto",
+    filename: "gps.conf",
     vendor: true,
     src: "gps.conf",
 }
@@ -20,20 +25,23 @@ prebuilt_etc {
 
 prebuilt_etc {
 
-    name: "gnss_antenna_info.conf",
+    name: "gnss_antenna_info.conf.moto",
+    filename: "gnss_antenna_info.conf",
     vendor: true,
     src: "gnss_antenna_info.conf",
 }
 
 prebuilt_etc {
-    name: "gnss@2.0-base.policy",
+    name: "gnss@2.0-base.policy.moto",
+    filename: "gnss@2.0-base.policy",
     vendor: true,
     sub_dir: "seccomp_policy",
     src: "seccomp_policy/gnss@2.0-base.policy",
 }
 
 prebuilt_etc {
-    name: "gnss@2.0-xtra-daemon.policy",
+    name: "gnss@2.0-xtra-daemon.policy.moto",
+    filename: "gnss@2.0-xtra-daemon.policy",
     vendor: true,
     sub_dir: "seccomp_policy",
     src: "seccomp_policy/gnss@2.0-xtra-daemon.policy",
