@@ -15,6 +15,10 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
+# device/qcom/common (inherited via aospa-target.mk) needs the platform at product time;
+# BoardConfigCommon.mk is read too late for it.
+TARGET_BOARD_PLATFORM := lahaina
+
 # Qualcomm common definitions come from device/qcom/common, which
 # vendor/aospa/target/product/aospa-target.mk inherits.
 # QTI components (list taken from AOSPA dubai, the closest AOSPA Moto lahaina device).
